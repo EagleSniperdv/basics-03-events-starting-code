@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="https://unpkg.com/vue@3.2.30"></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -18,9 +18,24 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button>Add</button>
-      <button>Remove</button>
+      <button v-on:click="add(1)">Add</button>
+      <button v-on:click="remove(1)">Remove</button>
+      <p v-once>starting counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+      <input type="text" 
+      v-on:input="setProf($event, 'Nyagoko')"
+      v-on:keyup.enter="confirmProf"
+      v-model="prof"
+      >
+      <p>Your Name: {{ fullprof }}</p>
+      <button v-on:click="resetProf">reset Name</button>
+
+      <form v-on:submit.prevent="subForm">
+        <input type="text"
+          v-model="prof"
+        >
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
